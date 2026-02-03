@@ -1,0 +1,65 @@
+---
+title: "Reproducible documents"
+author: "rostools"
+format: html
+execute:
+  echo: false
+  warning: false
+  message: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup-chunk}
+library(tidyverse)
+```
+
+
+
+```{r}
+post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
+```
+
+
+## Showing the data
+
+```{r}
+dplyr::glimpse(post_meal_data)
+```
+
+```{r}
+#| fig-cap: "Distribution of BMI."
+#| label: fig-bmi-histo
+ggplot(post_meal_data, aes(x = BMI)) +
+  geom_histogram()
+```
+
+
+
+
+```{r}
+# This is a potential solution
+#| fig-cap: "Distribution of glykemi."
+#| label: fig-glykemi-bar
+ggplot(post_meal_data, aes(x = glykemi)) +
+  geom_bar()
+ggplot(post_meal_data, aes(x = Group, fill = glykemi)) +
+  geom_bar()
+ggplot(post_meal_data, aes(x = Group, fill = as.character(glykemi))) +
+  geom_bar()
+ggplot(post_meal_data, aes(x = BMI)) +
+  geom_histogram()
+```
+
+
+```{r}
+ggplot(post_meal_data, aes(x = glykemi)) +
+  geom_bar()
+ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
+  geom_point()
+ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
+  geom_point() +
+  geom_smooth()
+```
+
