@@ -22,6 +22,7 @@ library(tidyverse)
 post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
 ```
 
+Here, we loaded the csv data and used {here}
 
 ## Showing the data
 
@@ -30,6 +31,8 @@ post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
 #| eval: false
 dplyr::glimpse(post_meal_data)
 ```
+
+# ggplot2 session
 
 ```{r}
 #| fig-cap: "Distribution of BMI."
@@ -73,3 +76,8 @@ ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
   geom_point() +
   geom_smooth()
 ```
+
+
+
+
+
