@@ -16,6 +16,7 @@ library(tidyverse)
 ```
 
 
+# Loading the data
 
 ```{r}
 post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
@@ -25,6 +26,8 @@ post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
 ## Showing the data
 
 ```{r}
+#| echo: false
+#| eval: false
 dplyr::glimpse(post_meal_data)
 ```
 
@@ -36,30 +39,37 @@ ggplot(post_meal_data, aes(x = BMI)) +
 ```
 
 
-
+## Plotting two discrete variables
 
 ```{r}
 # This is a potential solution
 #| fig-cap: "Distribution of glykemi."
 #| label: fig-glykemi-bar
-ggplot(post_meal_data, aes(x = glykemi)) +
-  geom_bar()
-ggplot(post_meal_data, aes(x = Group, fill = glykemi)) +
-  geom_bar()
 ggplot(post_meal_data, aes(x = Group, fill = as.character(glykemi))) +
   geom_bar()
-ggplot(post_meal_data, aes(x = BMI)) +
-  geom_histogram()
 ```
 
 
-```{r}
+## Side by side plots
+
+```{r fig-bmi-glycemia}
+#| fig-cap: "BMI and glycemia, side by side"
+#| fig-subcap:
+#|   - "Distribution of BMI"
+#|   - "Distribution of glycemia"
+#| layout-ncol: 2
+
+ggplot(post_meal_data, aes(x = BMI)) +
+  geom_histogram()
+
 ggplot(post_meal_data, aes(x = glykemi)) +
   geom_bar()
-ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
-  geom_point()
+```
+
+## Plotting two continuous variables
+
+```{r}
 ggplot(post_meal_data, aes(x = BMI, y = auc_pg)) +
   geom_point() +
   geom_smooth()
 ```
-
