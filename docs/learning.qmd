@@ -13,14 +13,10 @@ editor_options:
 
 ```{r setup-chunk}
 library(tidyverse)
-```
 
-
-# Loading the data
-
-```{r}
 post_meal_data <- read_csv2(here::here("data/post-meal-insulin.csv"))
 ```
+
 
 Here, we loaded the csv data and used {here}
 
